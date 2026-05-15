@@ -10,3 +10,8 @@ In the current version (v1.0), threatlens helps users analyze suspicious links a
 
 How it all fits together?
 I used python for backend and js+css+html for frontend. The frontend sends the user entered URL in the form of JSON data, which then undergoes analysis. The core logic checks for several factors like url lenght, how many "." are present, presence of specific symbols and set of suspicious keywords like "lucky, winner, verify, paypa1, etc". Ultimately, based on those factors, it estimates a risk score (from 0-100, where 0 standing for safe) and returns the verdict, risk score as well as reason why it got that score in json form which is displayed to the user. 
+
+Evolution of ThreatLens
+| Initial Prototype | Final Dashboard |
+|---|---|
+| ![V0.1](assets/initial_design.png) | ![V1.0](assets/final_Design.png) |e 
