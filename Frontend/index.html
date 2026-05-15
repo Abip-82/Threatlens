@@ -1,94 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Threatlens</title>
-    <style>
-        body {
-        background: #0f172a;
-        color: #e2e8f0;
-        font-family: 'JetBrains Mono', monospace;
+  <meta charset="UTF-8">
+  <title>ThreatLens</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    body {
+      background: #1a0a2e;
+      font-family: 'Press Start 2P', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #7c5cbf;
+    }
 
-        height: 100vh;
-        margin: 0;
-        }
+    h1 {
+      font-size: 3rem;
+      color: #7c5cbf;
+      margin-bottom: 1.5rem;
+      letter-spacing: 4px;
+    }
 
-        h1 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: #38bdf8;
-        }
+    p {
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
+      color: #7c5cbf;
+    }
 
-        input {
-        width: 400px;
-        padding: 12px;
+    input {
+      width: 360px;
+      padding: 12px 16px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      background: #f5e6c8;
+      border: 2px solid #7c5cbf;
+      border-radius: 4px;
+      color: #333;
+      margin-bottom: 1rem;
+      outline: none;
+    }
 
-        font-size: 1rem;
+    button {
+      padding: 10px 28px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      background: #1a0a2e;
+      color: #7c5cbf;
+      border: 2px solid #7c5cbf;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
 
-        background: #1e293b;
-        border: 1px solid #38bdf8;
+    button:hover {
+      background: #7c5cbf;
+      color: #1a0a2e;
+    }
 
-        color: white;
-        border-radius: 6px;
-        }
-
-        button {
-        margin-top: 12px;
-        padding: 12px 30px;
-
-        background: #38bdf8;
-        color: black;
-
-        border: none;
-        border-radius: 6px;
-
-        font-size: 1rem;
-        cursor: pointer;
-
-        transition: 0.2s ease;
-        }
-
-        button:hover {
-        transform: scale(1.03);
-        }
-
-        #result {
-        margin-top: 2rem;
-        font-size: 1.1rem;
-
-        background: #1e293b;
-        padding: 20px;
-        border-radius: 8px;
-
-        width: 420px;
-        }
-    </style>
+    #result {
+      margin-top: 2rem;
+      font-size: 0.65rem;
+      color: #a084d8;
+      text-align: center;
+      line-height: 2;
+    }
+  </style>
 </head>
 <body>
-    <h1>
-        THREATLENS
-    </h1>
-    <input type="text" id= "urlInput" placeholder = "Paste URL to analyze..."/>
-    <button onclick = "analyze()">Analyze</button>
-    <div id = "result"></div>
+  <h1>ThreatLens</h1>
+  <p>Phishing detector</p>
+  <p>Enter suspicious link here</p>
+  <br>
+  <input type="text" id="urlInput" placeholder="Input your link" />
+  <button onclick="analyze()">Analyze</button>
+  <div id="result"></div>
 
-    <script>
-        async function analyze(){
-            const url = document.getElementById("urlInput").value;
-            const res = await fetch('http://127.0.0.1:5000/analyze',{
-                method : 'POST',
-                headers: {'Content-Type':'application/json'},
-                body: JSON.stringify({url:url})
-            });
-            const data = await res.json();
-            document.getElementById('result').innerText =`Risk Score: ${data.risk_score} — ${data.reason}`;
-        }
-    </script>
+  <script>
+    async function analyze() {
+      const url = document.getElementById('urlInput').value;
+      const res = await fetch('http://127.0.0.1:5000/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: url })
+      });
+      const data = await res.json();
+      document.getElementById('result').innerText =
+        `Risk Score: ${data.risk_score}\n${data.reason}`;
+    }
+  </script>
 </body>
 </html>
