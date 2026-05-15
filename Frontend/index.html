@@ -15,20 +15,68 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      color: #7c5cbf;
+      color: #0f0f11;
+      overflow : hidden;
+    }
+
+    header{
+      padding : 40px;
+      text-align : center;
+      position : relative; 
     }
 
     h1 {
       font-size: 3rem;
-      color: #7c5cbf;
+      color: #5cbf66;
       margin-bottom: 1.5rem;
       letter-spacing: 4px;
+      text-shadow: 3px 3px #000;
+      display : inline-block;
+    }
+    
+    .tagline{
+      color : #ffff00;
+      font-size : 0.8rem;
+      margin-top: 10px;
+      display : block;
+    }
+
+    .top-nav{
+      width : 100%;
+      display : flex;
+      justify-content : center;
+      gap : 30px;
+      padding :  20px;
+      border-bottom : 1px solid rbga(92,191,102,0.2);
+      position :absolute;
+      top : 0;
+    }
+
+    .nav-item{
+    font-size : 0.6rem;
+    color: #5cbf66;
+    cursor : pointer;
+    }
+
+    .locked-nav{
+    opacity : 0.3;
+    cursor : not-allowed;
+    }
+
+    .scanner-container{
+      border : 2px solid #5cbf66;
+      background : rgba(92,191,102,0.05);
+      text-align : center;
+      width : 100%;
+      max-width : 600px;
+      padding : 30px;
+      margin-bottom : 40px;
     }
 
     p {
       font-size: 0.75rem;
       margin-bottom: 0.5rem;
-      color: #7c5cbf;
+      color: #5cbf66;
     }
 
     input {
@@ -37,7 +85,7 @@
       font-family: 'Press Start 2P', monospace;
       font-size: 0.7rem;
       background: #f5e6c8;
-      border: 2px solid #7c5cbf;
+      border: 2px solid #5cbf66;
       border-radius: 4px;
       color: #333;
       margin-bottom: 1rem;
@@ -47,37 +95,89 @@
     button {
       padding: 10px 28px;
       font-family: 'Press Start 2P', monospace;
-      font-size: 0.7rem;
-      background: #1a0a2e;
-      color: #7c5cbf;
-      border: 2px solid #7c5cbf;
-      border-radius: 4px;
+      background: transparent;
+      color: #5cbf66;
+      border: 2px solid #5cbf66;
       cursor: pointer;
-      transition: background 0.2s, color 0.2s;
     }
 
     button:hover {
-      background: #7c5cbf;
+      background: #5cbf66;
       color: #1a0a2e;
     }
 
-    #result {
-      margin-top: 2rem;
-      font-size: 0.65rem;
-      color: #a084d8;
-      text-align: center;
-      line-height: 2;
+    .info-row{
+      display:flex;
+      gap:20px;
+      width: 100%;
+      max-width:800px;
     }
+    .info-card{
+      flex:1;
+      border: 1px solid #5cbf66;
+      padding:15px;
+      font-size: 0.5rem;
+      line-height:1.5;
+      opacity:0.8;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 0.65rem;
+      color: #5cbf66;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .author-footer{
+      position:fixed;
+      bottom: 10px;
+      right : 15px;
+      font-size : 0.5rem;
+      color : #5cbf66;
+      opacity :0.6;
+      letter-spacing:1px;
+    }
+
+    .author-name{
+      text-decoration : underline;
+      color : #ffff00;
+    }
+
   </style>
 </head>
 <body>
-  <h1>ThreatLens</h1>
-  <p>Phishing detector</p>
-  <p>Enter suspicious link here</p>
-  <br>
-  <input type="text" id="urlInput" placeholder="Input your link" />
-  <button onclick="analyze()">Analyze</button>
-  <div id="result"></div>
+  <nav class = "top-nav">
+    <div class = "nav-item">Scanner</div>
+    <div class = "nav-item locked-nav">History (v2.0)</div>
+    <div class = "nav-item locked-nav">Settings</div>
+  </nav>
+  <header>
+    <h1>ThreatLens</h1>
+    <span class = "tagline">Trust but Verify!</span>
+  </header>
+  
+  <div class = "scanner-container">
+  <p>Phishing detector v1.0</p>
+  <input type ="text" id = "urlInput" placeholder ="Paste link here...." />
+  <button onclick="analyze()">ANALYZE</button>
+  <div id="result">Awaiting input...</div>
+  </div>
+
+  <div class = "info-row">
+    <div class = "info-card">
+    <strong>?System Status</strong><br><br>
+    Scanner : Ready<br>
+    System : Online
+    </div>
+    <div class = "info-card" style = "color: #666; border-color:#444;">
+      <strong>Coming soon</strong><br><br>
+      [LOCKED] Hash Generator <br>
+      [LOCKED] Cipher Encoder/Decoder;<br>
+      [LOCKED] Password Strength Checker <br>
+      And more...
+      </div>
+  </div>
 
   <script>
     async function analyze() {
