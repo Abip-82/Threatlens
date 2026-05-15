@@ -9,7 +9,7 @@ def analyze():
     data = request.get_json()
     url = data.get('url','')
 
-    jsonify({
+    return jsonify({
         'url':url,
         'risk_score':42,
         'reason':'Placeholder: Real detailed analysis coming soon.'

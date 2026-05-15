@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threatlens</title>
+    <style>
+        body {
+        background: #0f172a;
+        color: #e2e8f0;
+        font-family: 'JetBrains Mono', monospace;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        height: 100vh;
+        margin: 0;
+        }
+
+        h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #38bdf8;
+        }
+
+        input {
+        width: 400px;
+        padding: 12px;
+
+        font-size: 1rem;
+
+        background: #1e293b;
+        border: 1px solid #38bdf8;
+
+        color: white;
+        border-radius: 6px;
+        }
+
+        button {
+        margin-top: 12px;
+        padding: 12px 30px;
+
+        background: #38bdf8;
+        color: black;
+
+        border: none;
+        border-radius: 6px;
+
+        font-size: 1rem;
+        cursor: pointer;
+
+        transition: 0.2s ease;
+        }
+
+        button:hover {
+        transform: scale(1.03);
+        }
+
+        #result {
+        margin-top: 2rem;
+        font-size: 1.1rem;
+
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 8px;
+
+        width: 420px;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        THREATLENS
+    </h1>
+    <input type="text" id= "urlInput" placeholder = "Paste URL to analyze..."/>
+    <button onclick = "analyze()">Analyze</button>
+    <div id = "result"></div>
+
+    <script>
+        async function analyze(){
+            const url = document.getElementById("urlInput").value;
+            const res = await fetch('http://127.0.0.1:5000/analyze',{
+                method : 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({url:url})
+            });
+            const data = await res.json();
+            document.getElementById('result').innerText =`Risk Score: ${data.risk_score} — ${data.reason}`;
+        }
+    </script>
+</body>
+</html>
