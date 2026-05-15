@@ -119,6 +119,7 @@
       font-size: 0.5rem;
       line-height:1.5;
       opacity:0.8;
+      color : #5cbf66;
     }
 
     #result {
@@ -128,7 +129,26 @@
       text-align: center;
       line-height: 1.6;
     }
+    .version-note{
+      position : center;
+      top:15px;
+      left:15px;
+      font-size: 0.5 rem;
+      color: #5cbf66;
+      opacity : 0.9;
+      letter-spacing: 1px;
+      pointer-events:none;
+      z-index: 10;
 
+      margin-top: 20px;
+      margin-bottom: 25px;
+
+      display: block;
+    }
+    .v2-hints{
+      color : #ffff00;
+      opacity: 0.8;
+    }
     .author-footer{
       position:fixed;
       bottom: 10px;
@@ -153,6 +173,9 @@
     <div class = "nav-item locked-nav">Settings</div>
   </nav>
   <header>
+    <div class = "version-note">
+      Stable: v1.0 <span class ="v2-hints"> | v2.0 coming soon...</span>
+    </div>
     <h1>ThreatLens</h1>
     <span class = "tagline">Trust but Verify!</span>
   </header>
@@ -191,5 +214,8 @@
       document.getElementById('result').innerText = `${data.verdict} \n Risk Score: ${data.risk_score}\n\n` + data.reasons.join('\n');
     }
   </script> 
+  <footer class="author-footer">
+    Built by <span class = "author-name"> Abip Mahat</span> | Cybersecurity & Programming Enthusiast
+  </footer>
 </body>
 </html>
