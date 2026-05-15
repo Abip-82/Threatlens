@@ -88,9 +88,8 @@
         body: JSON.stringify({ url: url })
       });
       const data = await res.json();
-      document.getElementById('result').innerText =
-        `Risk Score: ${data.risk_score}\n${data.reason}`;
+      document.getElementById('result').innerText = `${data.verdict} \n Risk Score: ${data.risk_score}\n\n` + data.reasons.join('\n');
     }
-  </script>
+  </script> 
 </body>
 </html>
