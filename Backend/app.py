@@ -50,7 +50,6 @@ def check_url_safety(url):
         'verdict': verdict,
         'reasons':reasons if reasons else ["No suspicious element detected"]
     }
-
 @app.route('/analyze', methods=['POST'])
 def analyze():
     data = request.get_json()
