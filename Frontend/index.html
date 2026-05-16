@@ -202,18 +202,7 @@
       </div>
   </div>
 
-  <script>
-    async function analyze() {
-      const url = document.getElementById('urlInput').value;
-      const res = await fetch('https://threatlens-5m61.onrender.com/analyze', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url: url })
-      });
-      const data = await res.json();
-      document.getElementById('result').innerText = `${data.verdict} \n Risk Score: ${data.risk_score}\n\n` + data.reasons.join('\n');
-    }
-  </script> 
+  <script src = "script.js"></script> 
   <footer class="author-footer">
     Built by <span class = "author-name"> Abip Mahat</span> | Cybersecurity & Programming Enthusiast
   </footer>
