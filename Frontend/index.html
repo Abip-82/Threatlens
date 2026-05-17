@@ -18,6 +18,15 @@
       color: #0f0f11;
       overflow : hidden;
     }
+    .page-content{
+      width :  100%;
+      display: flex;
+      flex-direction : column;
+      align-items : center;
+    }
+    .button-group button{ 
+      margin:5px;
+    }
 
     header{
       padding : 40px;
@@ -61,6 +70,11 @@
     .locked-nav{
     opacity : 0.3;
     cursor : not-allowed;
+    }
+
+    .nav-item:hover{
+      color : #ffff00;
+      text-decoration : underline;
     }
 
     .scanner-container{
@@ -168,9 +182,9 @@
 </head>
 <body>
   <nav class = "top-nav">
-    <div class = "nav-item">Scanner</div>
-    <div class = "nav-item locked-nav">History (v2.0)</div>
-    <div class = "nav-item locked-nav">Settings</div>
+    <div class = "nav-item" onclick = "showPage('url-page')">URL Scanner</div>
+    <div class = "nav-item" onclick = "showPage('cryptography-page')">Encrypt/Decrypt</div>
+    <div class = "nav-item locked-nav">Hash gen (v3.0)</div>
   </nav>
   <header>
     <div class = "version-note">
@@ -179,7 +193,7 @@
     <h1>ThreatLens</h1>
     <span class = "tagline">Trust but Verify!</span>
   </header>
-  
+<div id = "url-page" class = "page-content"> 
   <div class = "scanner-container">
   <p>Phishing detector v1.0</p>
   <input type ="text" id = "urlInput" placeholder ="Paste link here...." />
@@ -201,6 +215,20 @@
       And more...
       </div>
   </div>
+</div>
+
+<div id="cryptography-page" class = "page-content" style =  "display:none;">
+  <div class = "scanner-container">
+    <p> Cipher Encoder/Decoder</p>
+    <input type = "text" id = "cryptotext" placeholder = "Enter message if you want to enccrypt. Enter encrypted text if you want to decrypt." style = "width:80%;"/><br>
+    <input type="text" id = "cryptokey" placeholder = "Enter key" style = "width:50%;"/>
+    <div style = "margin-top:10px;">
+      <button onclick = "crypto('encrypt')">Encrypt</button>
+      <button onclick = "crypto('decrupt')">Decrypt </button>
+    </div>
+    <div id = "cryptoresult" style = "margin-top:20px; font-size:0.65rem; color:#ffff00;"></div>
+  </div>  
+</div>
 
   <script src = "script.js"></script> 
   <footer class="author-footer">

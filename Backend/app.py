@@ -50,12 +50,48 @@ def check_url_safety(url):
         'verdict': verdict,
         'reasons':reasons if reasons else ["No suspicious element detected"]
     }
+
+def cryptography(mode , text , key):
+    shift = len(key)
+    result = ""
+    for letter in text:
+        if letter.islower():
+            number = ord(letter) - ord('a')
+            if mode == "encrypt":
+                new_number = (number + shift) % 26
+            else:
+                new_number = (number -  shift) % 26
+            
+            result = result + chr(new_number + ord('a'))
+        
+        elif letter.isupper():
+            number = ord(letter) - ord('A')
+            if mode == "encrypt":
+                new_number = (number + shift) % 26
+            else:
+                new_number = (number - shift) % 26
+            
+            result = result + chr(new_number + ord('A'))
+        
+        else:
+            result = result + letter
+    return {
+        'result' : result
+    }
+
 @app.route('/analyze', methods=['POST'])
 def analyze():
     data = request.get_json()
     url = data.get('url','')
     result = check_url_safety(url)
     return jsonify(result)
+
+@app.route('/crypto', methods = ['POST'])
+def crypto():
+    data = request.get_json()
+    res = cryptography(data.get('mode') , data.get('text'), data.get('key'))
+    return jsonify(res)
+
 
 if __name__ == '__main__':
     import os
