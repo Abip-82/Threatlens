@@ -17,8 +17,27 @@
       height: 100vh;
       color: #0f0f11;
       overflow : hidden;
-      background : linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg,rgba(255 , 0, 0, 0.06) , rgba(0,255,0,0.02), rgba(0,0,255,0.06));
+      background-size :100% 2px , 3px 100%;
     }
+
+    .binary{
+      position : fixed;
+      top : 0;
+      right : 30px;
+      width : 200px;
+      height:100vh;
+      color : #5cbf66;
+      font-size : 0.8rem;
+      z-index : -1;
+      opacity:0.6;
+      pointer-events:none;
+      overflow : hidden;
+      line-height:1.5;
+      text-align : right;
+      text-shadow :  0 0 5px #5cbf66;
+      letter-spacing : 5px;
+    }
+
     .page-content{
       width :  100%;
       display: flex;
@@ -182,6 +201,7 @@
   </style>
 </head>
 <body>
+  <div id = "binary" class = "binary"></div>
   <nav class = "top-nav">
     <div class = "nav-item" onclick = "showPage('Dashboard')">Dashboard</div>
     <div class = "nav-item" onclick = "showPage('url-page')">URL Scanner</div>
