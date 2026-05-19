@@ -42,7 +42,7 @@ function Sbinary(){
         for (let j = 0; j<6;j++){
             row += (Math.random() > 0.5 ? "1" : "0") + " ";
         }
-        binary += row + "<br>";
+        binary += row + "<br>"; 
     }
     stream.innerHTML = binary;
 }
