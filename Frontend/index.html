@@ -17,6 +17,7 @@
       height: 100vh;
       color: #0f0f11;
       overflow : hidden;
+      background : linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg,rgba(255 , 0, 0, 0.06) , rgba(0,255,0,0.02), rgba(0,0,255,0.06));
     }
     .page-content{
       width :  100%;
@@ -182,6 +183,7 @@
 </head>
 <body>
   <nav class = "top-nav">
+    <div class = "nav-item" onclick = "showPage('Dashboard')">Dashboard</div>
     <div class = "nav-item" onclick = "showPage('url-page')">URL Scanner</div>
     <div class = "nav-item" onclick = "showPage('cryptography-page')">Encrypt/Decrypt</div>
     <div class = "nav-item locked-nav">Hash gen (v3.0)</div>
@@ -192,14 +194,8 @@
     </div>
     <h1>ThreatLens</h1>
     <span class = "tagline">Trust but Verify!</span>
-  </header>
-<div id = "url-page" class = "page-content"> 
-  <div class = "scanner-container">
-  <p>Phishing detector v2.0</p>
-  <input type ="text" id = "urlInput" placeholder ="Paste link here...." />
-  <button onclick="analyze()">ANALYZE</button>
-  <div id="result">Awaiting input...</div>
-  </div>
+  </header> 
+<div id = "Dashboard" class = "page-content"> 
 
   <div class = "info-row">
     <div class = "info-card">
@@ -210,17 +206,26 @@
     <div class = "info-card" style = "color: #666; border-color:#444;">
       <strong>Coming soon</strong><br><br>
       [LOCKED] Hash Generator <br>
-      [LOCKED] Cipher Encoder/Decoder;<br>
+      [LOCKED] Port Scanner   <br>
       [LOCKED] Password Strength Checker <br>
       And more...
-      </div>
+    </div>
+  </div>
+</div>
+
+<div id ="url-page" class = "page-content" style = "display:none;">
+  <div class = "scanner-container">
+    <p>Phishing detector v2.0</p>
+    <input type = "text" id = "urlInput" placeholder = "Paste link here...." />
+    <button onclick="analyze()">Analyze </button>
+    <div id = "result"> Awaiting input....</div>
   </div>
 </div>
 
 <div id="cryptography-page" class = "page-content" style =  "display:none;">
   <div class = "scanner-container">
     <p> Cipher Encoder/Decoder</p>
-    <input type = "text" id = "cryptotext" placeholder = "Enter message if you want to enccrypt. Enter encrypted text if you want to decrypt." style = "width:80%;"/><br>
+    <input type = "text" id = "cryptotext" placeholder = "Enter secret message...." style = "width:80%;"/><br>
     <input type="text" id = "cryptokey" placeholder = "Enter key" style = "width:50%;"/>
     <div style = "margin-top:10px;">
       <button onclick = "crypto('encrypt')">Encrypt</button>

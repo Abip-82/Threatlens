@@ -1,3 +1,8 @@
+function showPage(id){
+    document.querySelectorAll('.page-content').forEach(p => p.style.display = 'none');
+    document.getElementById(id).style.display = 'flex';
+}
+
 async function analyze(){
     const url = document.getElementById("urlInput").value;
 
@@ -11,11 +16,6 @@ async function analyze(){
 
     const data = await res.json();
     document.getElementById("result").innerText = `${data.verdict} \n Risk Score: ${data.risk_score}\n\n` + data.reasons.join('\n');
-}
-
-function showPage(id){
-    document.querySelectorAll('.page-content').forEach(p => p.style.display =  'none');
-    document.getElementById(id).style.display = 'flex';
 }
 
 async function crypto(mode){
