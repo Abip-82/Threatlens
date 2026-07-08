@@ -16,11 +16,15 @@ def check_url_safety(url):
         score += 20
         reasons.append("Too many dots. Url is suspicious")
 
+    if '!'in url:
+        score += 20
+        reasons.append("Exclamation mark in url. Very uncommon in real urls but often used in phishing sites.")
+
     if '@' in url:
         score += 20
         reasons.append("@ in url. It is uncommon in real urls and commonly used in phishing sites")
 
-    sus_words = ['login', "bank" , "confirm", "quick" ,"safe", "purchase" , "secure", "paypa1" , "verify", "update" , "winner" , "lucky"]
+    sus_words = ['login', "bank" , "confirm", "quick", "prize" ,"safe", "purchase" , "secure", "paypa1" , "verify", "update" , "winner" , "lucky"]
     for word in sus_words:
         if word in url.lower():
             score +=10
