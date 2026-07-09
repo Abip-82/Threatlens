@@ -6,12 +6,15 @@ app = Flask(__name__)
 CORS(app)
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
-INDEX_FILE = ROOT_DIR / "index.html"
 
 @app.route('/')
 @app.route('/index.html')
 def home():
-    return send_file(INDEX_FILE, mimetype='text/html')
+    return send_file(ROOT_DIR / 'index.html', mimetype='text/html')
+
+@app.route('/script.js')
+def script():
+    return send_file(ROOT_DIR / 'script.js', mimetype='application/javascript')
 
 def check_url_safety(url):
     score = 0
