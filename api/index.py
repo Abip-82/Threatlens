@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS 
+from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
@@ -83,6 +83,7 @@ def cryptography(mode , text , key):
         'result' : result
     }
 
+@app.route('/analyze', methods=['POST'])
 @app.route('/api/analyze', methods=['POST'])
 def analyze():
     data = request.get_json()
@@ -90,8 +91,9 @@ def analyze():
     result = check_url_safety(url)
     return jsonify(result)
 
-@app.route('/api/crypto', methods = ['POST'])
+@app.route('/crypto', methods=['POST'])
+@app.route('/api/crypto', methods=['POST'])
 def crypto():
     data = request.get_json()
-    res = cryptography(data.get('mode') , data.get('text'), data.get('key'))
+    res = cryptography(data.get('mode'), data.get('text'), data.get('key'))
     return jsonify(res)
