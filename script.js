@@ -8,7 +8,7 @@ async function analyze(){
 
     document.getElementById("result").innerText = "Analyzing...";
 
-    const res = await fetch("http://127.0.0.1:5000/analyze",{
+    const res = await fetch("/api/analyze",{
         method : "POST",
         headers : {'Content-Type' : 'application/json'},
         body : JSON.stringify({url:url})
@@ -18,14 +18,14 @@ async function analyze(){
     document.getElementById("result").innerText = `${data.verdict} \n Risk Score: ${data.risk_score}\n\n` + data.reasons.join('\n');
 }
 
-async function crypto(mode){
+async function runCrypto(mode){
     let text = document.getElementById("cryptotext").value;
     let key = document.getElementById("cryptokey").value;
     let display = document.getElementById("cryptoresult");
 
     display.innerText = "Processing ...";
 
-    let response = await fetch('http://127.0.0.1:5000/crypto', {
+    let response = await fetch('/api/crypto', {
         method : 'POST',
         headers : {'Content-Type' : 'application/json'},
         body : JSON.stringify({text:text , key:key , mode: mode})

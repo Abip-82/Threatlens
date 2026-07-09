@@ -83,21 +83,15 @@ def cryptography(mode , text , key):
         'result' : result
     }
 
-@app.route('/analyze', methods=['POST'])
+@app.route('/api/analyze', methods=['POST'])
 def analyze():
     data = request.get_json()
     url = data.get('url','')
     result = check_url_safety(url)
     return jsonify(result)
 
-@app.route('/crypto', methods = ['POST'])
+@app.route('/api/crypto', methods = ['POST'])
 def crypto():
     data = request.get_json()
     res = cryptography(data.get('mode') , data.get('text'), data.get('key'))
     return jsonify(res)
-
-
-if __name__ == '__main__':
-    import os
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)

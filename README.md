@@ -1,5 +1,7 @@
 # Threatlens v2.0
 
+This project is deployed on Vercel and uses serverless API routes for the backend features.
+
 Threatlens is an educational cybersecurity webapp desgined to serve as a beginner toolkit. It contains features like suspicious links analyzer, cipher encoder and decoder with user input key in current version. I plan to update and expand threatlens on iterations, adding new layers and features on each iteration like hashes generator, port scanner, password strength checker, and much more.
 
 Why did I build Threatlens?
