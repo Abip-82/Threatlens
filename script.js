@@ -8,7 +8,7 @@ async function analyze(){
 
     document.getElementById("result").innerText = "Analyzing...";
 
-    const res = await fetch("/api/analyze",{
+    const res = await fetch("/api/index/analyze",{
         method : "POST",
         headers : {'Content-Type' : 'application/json'},
         body : JSON.stringify({url:url})
@@ -25,7 +25,7 @@ async function runCrypto(mode){
 
     display.innerText = "Processing ...";
 
-    let response = await fetch('/api/crypto', {
+    let response = await fetch('/api/index/crypto', {
         method : 'POST',
         headers : {'Content-Type' : 'application/json'},
         body : JSON.stringify({text:text , key:key , mode: mode})
