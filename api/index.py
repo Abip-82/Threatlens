@@ -1,8 +1,17 @@
-from flask import Flask, request, jsonify
+from pathlib import Path
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+INDEX_FILE = ROOT_DIR / "index.html"
+
+@app.route('/')
+@app.route('/index.html')
+def home():
+    return send_file(INDEX_FILE, mimetype='text/html')
 
 def check_url_safety(url):
     score = 0
@@ -85,6 +94,7 @@ def cryptography(mode , text , key):
 
 @app.route('/analyze', methods=['POST'])
 @app.route('/api/analyze', methods=['POST'])
+@app.route('/api/index/analyze', methods=['POST'])
 def analyze():
     data = request.get_json()
     url = data.get('url','')
@@ -93,6 +103,7 @@ def analyze():
 
 @app.route('/crypto', methods=['POST'])
 @app.route('/api/crypto', methods=['POST'])
+@app.route('/api/index/crypto', methods=['POST'])
 def crypto():
     data = request.get_json()
     res = cryptography(data.get('mode'), data.get('text'), data.get('key'))
